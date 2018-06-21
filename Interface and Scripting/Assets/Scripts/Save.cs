@@ -35,6 +35,9 @@ public class Save : MonoBehaviour {
         // Adds User Information to the String
         for (int i = 0; i < 3; i++)
         {
+            if (LoggedUserSave == null || LoggedUserSave[i] == null)
+                continue;
+
             for (int x = 0; x < LoggedUserSave[i].Length; x++)
             {
                 form += LoggedUserSave[i][x];
@@ -84,6 +87,10 @@ public class Save : MonoBehaviour {
         // Checks to see if File Exists
         if (System.IO.File.Exists("playerLog.txt"))
             form += Environment.NewLine + Environment.NewLine;
+
+        // Checks to See if there is a User
+        if (LoggedUser == null)
+            return;
 
         // Writes Current User
         form += LoggedUser + "'s Log - " + DateTime.Today.ToString() + Environment.NewLine;

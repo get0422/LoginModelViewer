@@ -8,26 +8,24 @@ public class PlayerLog : MonoBehaviour {
     public List<string> Eventlog = new List<string>();
     public List<string> Savelog = new List<string>();
     public int maxLines = 15;
+    public short onlyOnce;
 
     // Private Variables
-    private string guiText;
+    private string gui_Text;
     private GUIStyle style;
     private Load load;
     private PlayerLog log;
-    private GameObject logPanel;
     private Model lastSelected;
     private List<Model> modelList;
-    private short onlyOnce;
 
     // Use this for Initialization
     void Start()
     {
         // Sets Variables
         load = GameObject.FindGameObjectWithTag("ContentList").GetComponent<Load>();
-        logPanel = GameObject.Find("UserLogPanel");
         log = GetComponent<PlayerLog>();
         onlyOnce = 0;
-        guiText = "";
+        gui_Text = "";
     }
 
     // Update is called once per frame
@@ -57,7 +55,7 @@ public class PlayerLog : MonoBehaviour {
         style.fontSize = ((Screen.height / 4)) / (maxLines + 1);
 
         // Creats GUI Label
-        GUI.Label(new Rect(0, Screen.height - (Screen.height / 4), Screen.width - ((Screen.width / 6) * 5), Screen.height / 4), guiText, GUI.skin.textArea);
+        GUI.Label(new Rect(0, Screen.height - (Screen.height / 4), Screen.width - ((Screen.width / 6) * 5), Screen.height / 4), gui_Text, GUI.skin.textArea);
     }
 
     public void AddEvent(string eventString)
@@ -71,13 +69,13 @@ public class PlayerLog : MonoBehaviour {
             Eventlog.RemoveAt(0);
 
         // Clears guiText
-        guiText = "";
+        gui_Text = "";
 
         // Adds Everything From the Log to guiText
         foreach (string logEvent in Eventlog)
         {
-            guiText += logEvent;
-            guiText += "\n";
+            gui_Text += logEvent;
+            gui_Text += "\n";
         }
     }
 

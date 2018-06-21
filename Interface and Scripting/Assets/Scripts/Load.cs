@@ -10,8 +10,9 @@ public class Load : MonoBehaviour {
 
     // Public Variables
     public string[] LoggedUserSave;
-
+    public GameObject OnceLoaded;
     // Private Variables
+    private int rest = 0;
     private string form;
     private string num;
     private float[] Numbers;
@@ -60,6 +61,15 @@ public class Load : MonoBehaviour {
     // Loads Position and Rotation
     public void LoadPosRo(Model currentModelList, int modelnumber)
     {
+        // Resets it if another User Logged Out
+        if(rest == 0) {
+            rest++;
+            for (int i = 0; i < isLoaded.Length; i++)
+            {
+                isLoaded[i] = false;
+            }
+        }
+
         // Checks to see if its been loaded
         if (isLoaded[modelnumber] == true)
             return;
@@ -74,15 +84,34 @@ public class Load : MonoBehaviour {
         if (temp.gameObject.Equals(null))
             return;
 
-        // Sets Current Models Position
-        temp.transform.position = new Vector3(Numbers[increment], Numbers[increment + 1], Numbers[increment + 2]);
-        increment += 3;
+        // Checks to see if its a new User
+        if(Numbers.Length < 4)
+        {
+            // Sets Current Models Position
+            temp.transform.position = new Vector3(0, 3.051758E-05f, 1.5f);
+            increment += 3;
 
-        // Sets Current Models Rotation
-        temp.transform.rotation = new Quaternion(Numbers[increment], Numbers[increment + 1], Numbers[increment + 2], Numbers[increment + 3]);
-        increment += 4;
+            // Sets Current Models Rotation
+            temp.transform.rotation = Quaternion.identity;
+            increment += 4;
+        }
+        else {
+            // Sets Current Models Position
+            temp.transform.position = new Vector3(Numbers[increment], Numbers[increment + 1], Numbers[increment + 2]);
+            increment += 3;
+
+            // Sets Current Models Rotation
+            temp.transform.rotation = new Quaternion(Numbers[increment], Numbers[increment + 1], Numbers[increment + 2], Numbers[increment + 3]);
+            increment += 4;
+        }
 
         // Sets that it has Already Been Loaded
         isLoaded[modelnumber] = true;
+    }
+
+    public void ResetObjects()
+    {
+        rest = 0;
+        OnceLoaded.GetComponent<PlayerLog>().onlyOnce = 0;
     }
 }

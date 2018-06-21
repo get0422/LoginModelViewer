@@ -38,10 +38,11 @@ public class Login : MonoBehaviour {
                 obj_password.GetComponent<InputField>().Select();
 
         // Checks if Enter is Pushed then if all InputFields Where Filled 
-        if (Input.GetKeyDown(KeyCode.Return))
-            if (str_username != "" && str_password != "")
+        if (Input.GetKeyDown(KeyCode.Return)) { 
+            if (str_username != "" && str_password != "") { 
                 LoginButton(); playerLoad.LoadFile();
-
+            }
+        }
         // Sets Current Strings to their respective InputFields
         str_username = obj_username.GetComponent<InputField>().text;
         str_password = obj_password.GetComponent<InputField>().text;

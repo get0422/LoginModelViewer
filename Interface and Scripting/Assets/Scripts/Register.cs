@@ -18,13 +18,11 @@ public class Register : MonoBehaviour
     private string str_password;
     private string str_passwordConf;
     private string registrationForm;
-    private bool validEmail = false;
 
     // Use this for Initialization
     void Start()
     {
         // Sets Variables
-        validEmail = false;
         obj_username = GameObject.Find("RegisterUsername");
         obj_email = GameObject.Find("RegisterEmail");
         obj_password = GameObject.Find("RegisterPassword");

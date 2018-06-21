@@ -5,20 +5,14 @@ using UnityEngine;
 public class MouseRotation : MonoBehaviour {
 
     // Private Variables
-    private float speed;
     private Vector3 mousePosition;
     private Vector3 mouseOffset;
-    private Vector3 objectrotation;
     private bool isRotating;
 
     public Quaternion ModelTransform;
 
     // Use this for Initialization
-    void Start()
-    {
-        // Sets Variables
-        speed = 0.3f;
-        objectrotation = Vector3.zero;
+    void Start() {
     }
 
     // Update is called once per frame

@@ -5,7 +5,6 @@ using UnityEngine;
 public class MouseEnlargeandPan : MonoBehaviour {
 
     // Private Variables
-    private float distance;
     private Vector3 speed;
     private GameObject mainCamera;
     private Vector3 MouseOldPosition;
@@ -14,9 +13,6 @@ public class MouseEnlargeandPan : MonoBehaviour {
 	void Start () {
         // Sets Main Camera
         mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
-
-        // Distance from Camera to Object
-        distance = mainCamera.transform.position.z - transform.position.z;
     }
 
     // Update is called once per frame
@@ -24,9 +20,6 @@ public class MouseEnlargeandPan : MonoBehaviour {
         // Enlarge Model
         if (Input.mouseScrollDelta.y != 0)
         {
-            // Distance from Camera to Object
-            distance = mainCamera.transform.position.z - transform.position.z;
-
             if (Input.mouseScrollDelta.y > 0)
             {
                 transform.localScale = new Vector3(transform.localScale.x + 0.3f, transform.localScale.y + 0.3f, transform.localScale.z + 0.3f);
